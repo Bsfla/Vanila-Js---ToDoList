@@ -5,7 +5,7 @@ const todoList = document.querySelector('.todo-list');
 
 
 todoButton.addEventListener('click',addTodo);
-todoList.addEventListener('click',deleteCheck);
+todoList.addEventListener('click',btnCheck);
 
 
 function addTodo(event){
@@ -31,6 +31,11 @@ function addTodo(event){
     deleteButton.classList.add('delete-btn');
     todoDiv.appendChild(deleteButton);
 
+    //updataButton
+    const upDateButton = document.createElement("button");
+    upDateButton.classList.add('update-btn');
+    todoDiv.appendChild(upDateButton);
+
     //append todolist
     todoList.appendChild(todoDiv);
 
@@ -40,19 +45,31 @@ function addTodo(event){
 
 
 }
-function deleteCheck(event){
+
+function btnCheck(event){
     const item = event.target;
     
-    if(item.classList[0] == "delete-btn"){
-        const todo = item.parentElement;
-        todo.remove();
-    }
-    if(item.classList[0] == "complete-btn"){
-        const todo = item.parentElement;
-        todo.innerText = "Finish"
-        
-        todo.classList.add("completed")
-    }
+    if(item.classList[0] === "delete-btn") deleteBtn(item.parentElement);
+    
+    else if (item.classList[0] === "complete-btn") completeBtn(item.parentElement);
 
+    else if (item.classList[0] === "update-btn") upDateBtn(item.parentNode);
+}
+
+function deleteBtn(e) {
+    e.remove();
+}
+
+function completeBtn(e) {
+    const todo = e;
+    todo.innerText = "Finish";
+    todo.classList.add("completed");
+    
+}
+
+function upDateBtn(e) {
+    const data = e.childNodes[0];
+    data.innerHTML = todoInput.value;
+    todoInput.value = " "
 }
 
