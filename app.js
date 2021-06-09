@@ -10,37 +10,42 @@ todoList.addEventListener('click',btnCheck);
 
 function addTodo(event){
     event.preventDefault();
+    if (!todoInput.value) {
+        alert('내용을 입력해주세요'); 
+        return false;
+    }
+    else {
+          const todoDiv = document.createElement("div");
+          todoDiv.classList.add("todo");
 
-    const todoDiv = document.createElement("div");
-    todoDiv.classList.add("todo");
-
-    const newTodo = document.createElement('li');
-    newTodo.innerText = todoInput.value;
-    newTodo.classList.add('todo-item');
-    todoDiv.appendChild(newTodo);
+          const newTodo = document.createElement('li');
+          newTodo.innerText = todoInput.value;
+          newTodo.classList.add('todo-item');
+          todoDiv.appendChild(newTodo);
     
     //completebutton
-    const completeButton = document.createElement("button");
-    completeButton.innerHTML = '<i class = "fas fa-check"></i>';
-    completeButton.classList.add('complete-btn');
-    todoDiv.appendChild(completeButton);
+          const completeButton = document.createElement("button");
+          completeButton.innerHTML = '<i class = "fas fa-check"></i>';
+          completeButton.classList.add('complete-btn');
+          todoDiv.appendChild(completeButton);
     
     //deletebutton
-    const deleteButton = document.createElement("button");
-    deleteButton.innerHTML = '<i class = "fas fa-trash"></i>';
-    deleteButton.classList.add('delete-btn');
-    todoDiv.appendChild(deleteButton);
+          const deleteButton = document.createElement("button");
+          deleteButton.innerHTML = '<i class = "fas fa-trash"></i>';
+          deleteButton.classList.add('delete-btn');
+          todoDiv.appendChild(deleteButton);
 
     //updataButton
-    const upDateButton = document.createElement("button");
-    upDateButton.classList.add('update-btn');
-    todoDiv.appendChild(upDateButton);
+          const upDateButton = document.createElement("button");
+          upDateButton.classList.add('update-btn');
+          todoDiv.appendChild(upDateButton);
 
     //append todolist
-    todoList.appendChild(todoDiv);
+          todoList.appendChild(todoDiv);
 
     //clear input value
-    todoInput.value = " "
+          todoInput.value = " "
+    }
     
 
 
